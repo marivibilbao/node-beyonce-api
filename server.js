@@ -67,9 +67,15 @@ app.post("/albums/", function (request, response){
 });
 
 app.put("/albums/:albumId", function (request, response){
-
+  const albumId = request.params.albumId;
   const album = albumsData.find(a => a.albumId === albumId);
-  response.send(album);
+  album.artisName = request.body.artisName;
+  album.collectionName = request.body.collectionName;
+  album.artworkUrl100 = request.body.artworkUrl100;
+  album.releaseDate = request.body.releaseDate;
+  album.primaryGenreName = request.body.primaryGenreName;
+  album.url = request.body.url;
+  response.send({success: true});
 });
 
 
